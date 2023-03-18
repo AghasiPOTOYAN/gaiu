@@ -1,7 +1,8 @@
-class Grass {
+let LivingCreature = require("./LivingCreature")
+
+module.exports = class Grass extends LivingCreature{
     constructor(x,y){
-            this.x = x
-            this.y = y
+        super(x,y)
             this.multiply = 0
             this.directions = [
                 [this.x - 1, this.y - 1],

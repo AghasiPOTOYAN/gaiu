@@ -1,7 +1,8 @@
-class Shark{
+let LivingCreature = require("./LivingCreature")
+
+module.exports = class Shark extends LivingCreature{
     constructor(x,y){
-              this.x = x
-              this.y = y
+        super(x,y)
               this.energy = 12
               this.directions = []
     }

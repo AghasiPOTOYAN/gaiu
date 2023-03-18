@@ -1,7 +1,8 @@
-class Jellyfish{
+let LivingCreature = require("./LivingCreature")
+
+module.exports = class Jellyfish extends LivingCreature{
     constructor(x,y){
-              this.x = x
-              this.y = y
+        super(x,y)
               this.energy = 12
               this.directions = []
     }
