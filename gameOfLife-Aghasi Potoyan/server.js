@@ -11,15 +11,7 @@ app.get('/', function (req, res) {
 server.listen(3000);
 
 
-io.on('connection', function (socket) {
-    for (var i in messages) {
-        socket.emit("display message", messages[i]);
-    }
-    socket.on("send message", function (data) {
-        messages.push(data);
-        io.sockets.emit("display message", data);
-    });
-});
+
 function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, jellyfish) {
     var matrix = []
 
@@ -89,7 +81,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
 
     }
-
+io.emit("send matrix",matrix)
     return matrix
 }
 
@@ -137,7 +129,7 @@ function creatOBJ() {
         }
     }
 
-
+    io.emit("send matrix",matrix)
 }
 creatOBJ()
 function gameMove() {
@@ -165,6 +157,7 @@ function gameMove() {
     for (let i in jellyfishArr) {
         jellyfishArr[i].eat()
     }
+    io.emit("send matrix",matrix)
 }
 setInterval(gameMove, 1000);
 

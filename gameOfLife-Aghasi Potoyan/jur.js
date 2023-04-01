@@ -58,10 +58,17 @@ module.exports = class Jur extends LivingCreature{
 
         return found;
     }
-    //բազմանալ
-    mul() {
-        let emptyCell = this.chooseCell(0);
-        let newCell = random(emptyCell)
+    random(ch){
+        let found = this.chooseCell(ch)
+        let result = Math.floor(Math.random()*found.length)
+        return found[result]
+    }
+       
+        mul() {
+            this.multiply++
+            // var emptyCell = this.chooseCell(0)
+            // var newCell = random(emptyCell)
+            let newCell = this.random(0)
         if (newCell && this.energy > 5) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -76,9 +83,12 @@ module.exports = class Jur extends LivingCreature{
 
 
 //ուտել
+
     eat() {
-        let emptyCell = this.chooseCell(1,2,5,6);
-        let newCell = random(emptyCell)
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
 
         if (newCell) {
             this.energy += 5;
@@ -128,10 +138,13 @@ module.exports = class Jur extends LivingCreature{
     }
 
     //քայլել
-    move() {
-        let emptyCell = this.chooseCell(0);
-        let newCell = random(emptyCell)
-
+    
+       
+        move() {
+            this.multiply++
+            // var emptyCell = this.chooseCell(0)
+            // var newCell = random(emptyCell)
+            let newCell = this.random(0)
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];

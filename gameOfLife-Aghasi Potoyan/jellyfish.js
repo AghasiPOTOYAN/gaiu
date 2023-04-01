@@ -39,11 +39,17 @@ module.exports = class Jellyfish extends LivingCreature{
 
       return found;
   }
-
-
-  mul() {
-      let emptyCell = this.chooseCell(0);
-      let newCell = random(emptyCell)
+  random(ch){
+    let found = this.chooseCell(ch)
+    let result = Math.floor(Math.random()*found.length)
+    return found[result]
+}
+   
+    mul() {
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
  
       if (newCell && this.energy > 5) {
           let newX = newCell[0];
@@ -58,9 +64,12 @@ module.exports = class Jellyfish extends LivingCreature{
   }
 
 
-  eat() {
-      let emptyCell = this.chooseCell(3);
-      let newCell = random(emptyCell)
+ 
+    eat() {
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
 
       if (newCell) {
           this.energy += 7;
@@ -91,9 +100,12 @@ module.exports = class Jellyfish extends LivingCreature{
       }
   }
 
-  move() {
-      let emptyCell = this.chooseCell(0);
-      let newCell = random(emptyCell)
+
+    move() {
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
 
       if (newCell) {
           let newX = newCell[0];
@@ -116,9 +128,13 @@ module.exports = class Jellyfish extends LivingCreature{
 
  
 
-move() {
-    let emptyCell = this.chooseCell(0);
-    let newCell = random(emptyCell)
+
+   
+    move() {
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
 
     if (newCell) {
         let newX = newCell[0];
@@ -141,9 +157,13 @@ move() {
 
 
 
-eat() {
-    let emptyCell = this.chooseCell(1);
-    let newCell = random(emptyCell)
+
+   
+    eat() {
+        this.multiply++
+        // var emptyCell = this.chooseCell(0)
+        // var newCell = random(emptyCell)
+        let newCell = this.random(0)
 
     if (newCell) {
         this.energy += 5;
