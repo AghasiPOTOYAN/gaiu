@@ -74,8 +74,6 @@ module.exports = class Shark extends LivingCreature{
    
     eat() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
       if (newCell) {
           this.energy += 5;
