@@ -11,8 +11,6 @@ random(ch){
    
     mul() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
         if (this.multiply >= 1 && newCell) {
@@ -31,8 +29,6 @@ random(ch){
   
         move() {
             this.multiply++
-            // var emptyCell = this.chooseCell(0)
-            // var newCell = random(emptyCell)
             let newCell = this.random(0)
         if (newCell) {
             let newX = newCell[0];

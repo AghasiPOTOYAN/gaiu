@@ -47,8 +47,6 @@ module.exports = class Jellyfish extends LivingCreature{
    
     mul() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
  
       if (newCell && this.energy > 5) {
@@ -67,8 +65,6 @@ module.exports = class Jellyfish extends LivingCreature{
  
     eat() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
       if (newCell) {
@@ -103,8 +99,6 @@ module.exports = class Jellyfish extends LivingCreature{
 
     move() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
       if (newCell) {
@@ -132,8 +126,6 @@ module.exports = class Jellyfish extends LivingCreature{
    
     move() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
     if (newCell) {
@@ -161,8 +153,6 @@ module.exports = class Jellyfish extends LivingCreature{
    
     eat() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
     if (newCell) {

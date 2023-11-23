@@ -66,8 +66,6 @@ module.exports = class Jur extends LivingCreature{
        
         mul() {
             this.multiply++
-            // var emptyCell = this.chooseCell(0)
-            // var newCell = random(emptyCell)
             let newCell = this.random(0)
         if (newCell && this.energy > 5) {
             let newX = newCell[0];
@@ -82,12 +80,9 @@ module.exports = class Jur extends LivingCreature{
     }
 
 
-//ուտել
 
     eat() {
         this.multiply++
-        // var emptyCell = this.chooseCell(0)
-        // var newCell = random(emptyCell)
         let newCell = this.random(0)
 
         if (newCell) {
@@ -137,13 +132,10 @@ module.exports = class Jur extends LivingCreature{
         }
     }
 
-    //քայլել
     
        
         move() {
             this.multiply++
-            // var emptyCell = this.chooseCell(0)
-            // var newCell = random(emptyCell)
             let newCell = this.random(0)
         if (newCell) {
             let newX = newCell[0];
