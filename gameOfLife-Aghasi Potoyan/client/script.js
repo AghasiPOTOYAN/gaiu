@@ -1,6 +1,13 @@
 let socket = io()
 let grassColor = "green"
 let jurColor = "blue"
+let killButton = document.getElementById("kill");
+killButton.addEventListener("click", handleKillClick)
+
+function handleKillClick() {
+    socket.emit("killAll")
+    grassColor = "black"
+}
 let ashunButton = document.getElementById("ashun");
 ashunButton.addEventListener("click", handleAsunClick)
 
@@ -46,7 +53,7 @@ function changeColor(matrix) {
 
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
-            var toBot = side - side * 0.5
+            let toBot = side - side * 0.5
             if (matrix[y][x] == 1) {
                 if (grassColor == "green") {
                 fill(grassColor)
@@ -68,12 +75,16 @@ function changeColor(matrix) {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('🍀', x * side, y * side + toBot)
+                }else if (grassColor == "black") {
+                    fill(grassColor)
+                    rect(x * side, y * side, side, side)
+                    text('☠︎', x * side, y * side + toBot)
                 }
             } else if (matrix[y][x] == 2) {
                 fill("white")
                 rect(x * side, y * side, side, side)
                 text('🍾', x * side, y * side + toBot)
-            } else if (matrix[y][x] == 3) {
+            }else if (matrix[y][x] == 3) {
                 fill("red")
                 rect(x * side, y * side, side, side)
                 text('🐟', x * side, y * side + toBot)

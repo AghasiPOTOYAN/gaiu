@@ -1,7 +1,8 @@
-var express = require('express');
-var app = express();
-var server = require('http').createServer(app);
-var io = require('socket.io')(server);
+let express = require('express');
+let app = express();
+let server = require('http').createServer(app);
+let io = require('socket.io')(server);
+let fs = require('fs');
 
 app.use(express.static("../client"));
 app.get('/', function (req, res) {
@@ -13,7 +14,7 @@ server.listen(3000);
 
 
 function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, jellyfish) {
-    var matrix = []
+    let matrix = []
 
     for (let i = 0; i < matrixSize; i++) {
         matrix.push([])
@@ -26,8 +27,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
     for (let i = 0; i < grass; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 1
 
@@ -35,8 +36,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
     for (let i = 0; i < grassEater; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 2
 
@@ -46,8 +47,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
     for (let i = 0; i < predator; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 3
 
@@ -56,8 +57,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
     for (let i = 0; i < jur; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 4
 
@@ -65,8 +66,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
     }
     for (let i = 0; i < shark; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 5
 
@@ -74,8 +75,8 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
     }
     for (let i = 0; i < jellyfish; i++) {
 
-        var x = Math.floor(Math.random() * matrixSize)
-        var y = Math.floor(Math.random() * matrixSize)
+        let x = Math.floor(Math.random() * matrixSize)
+        let y = Math.floor(Math.random() * matrixSize)
 
         matrix[y][x] = 6
 
@@ -102,28 +103,31 @@ const GrassEater = require("./grassEater")
 const Predator = require("./predator")
 const Jur = require("./jur")
 const Shark = require("./shark")
-const Jellyfish = require("./jellyfish")
+const Jellyfish = require("./jellyfish");
+
+
+
 function creatOBJ() {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
 
             if (matrix[y][x] == 1) {
-                var gr = new Grass(x, y)
+                let gr = new Grass(x, y)
                 grassArr.push(gr)
             } else if (matrix[y][x] == 2) {
-                var grEat = new GrassEater(x, y)
+                let grEat = new GrassEater(x, y)
                 grassEaterArr.push(grEat)
             } else if (matrix[y][x] == 3) {
-                var pred = new Predator(x, y)
+                let pred = new Predator(x, y)
                 predatorArr.push(pred)
             } else if (matrix[y][x] == 4) {
-                var jur = new Jur(x, y)
+                let jur = new Jur(x, y)
                 jurArr.push(jur)
             } else if (matrix[y][x] == 5) {
-                var shark = new Shark(x, y)
+                let shark = new Shark(x, y)
                 sharkArr.push(shark)
             } else if (matrix[y][x] == 6) {
-                var jellyfish = new Jellyfish(x, y)
+                let jellyfish = new Jellyfish(x, y)
                 jellyfishArr.push(jellyfish)
             }
         }
@@ -131,6 +135,9 @@ function creatOBJ() {
 
     io.emit("send matrix",matrix)
 }
+
+
+
 creatOBJ()
 function gameMove() {
     for (let i in grassArr) {
@@ -162,3 +169,27 @@ function gameMove() {
 setInterval(gameMove, 1000);
 
 
+let statistics ={
+
+}
+
+setInterval(function(){
+    statistics.grass = grassArr.length;
+    statistics.grassEater = grassEaterArr.length
+    statistics.predator = predatorArr.length;
+    statistics.jur = jurArr.length;
+    statistics.shark = sharkArr.length;
+    statistics.jellyfish = jellyfishArr.length;
+    fs.writeFile("./statistics.json",JSON.stringify(statistics), function(){
+        console.log("Grec");
+    })
+    
+}, 1000);
+
+io.on('connection', function (socket) {
+    createObject(matrix)
+
+    socket.on("killAll", function(){
+        
+    })
+})
