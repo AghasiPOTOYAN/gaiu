@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,15 +8,30 @@
     <title>Game of Life</title>
     <script src="https://cdn.jsdelivr.net/npm/p5@1.5.0/lib/p5.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-
+    <style>
+        h1 {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #f44336a1;
+            color: white;
+            margin: 0px;
+            text-align: center;
+        }
+    </style>
 </head>
+
 <body>
-    <button id="ashun">Ashun</button>
-    <button id="dzmer">Dzmer</button>
-    <button id="garun">Garun</button>
-    <button id="amar">Amar</button>
-    <button id="kill">Kill</button>
+    <div id="container">
+        <button id="ashun">Ashun</button>
+        <button id="dzmer">Dzmer</button>
+        <button id="garun">Garun</button>
+        <button id="amar">Amar</button>
+        <button id="kill">Kill</button>
+    </div>
+
     <script src="script.js"></script>
 
 </body>
+
 </html>

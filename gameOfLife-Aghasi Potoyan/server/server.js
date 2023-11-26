@@ -82,7 +82,7 @@ function matrixGenerator(matrixSize, grass, grassEater, predator, jur, shark, je
 
 
     }
-io.emit("send matrix",matrix)
+    io.emit("send matrix", matrix)
     return matrix
 }
 
@@ -133,7 +133,7 @@ function creatOBJ() {
         }
     }
 
-    io.emit("send matrix",matrix)
+    io.emit("send matrix", matrix)
 }
 
 
@@ -164,32 +164,38 @@ function gameMove() {
     for (let i in jellyfishArr) {
         jellyfishArr[i].eat()
     }
-    io.emit("send matrix",matrix)
+    io.emit("send matrix", matrix)
 }
-setInterval(gameMove, 1000);
+let gameId = setInterval(gameMove, 1000);
 
 
-let statistics ={
+let statistics = {
 
 }
 
-setInterval(function(){
+setInterval(function () {
     statistics.grass = grassArr.length;
     statistics.grassEater = grassEaterArr.length
     statistics.predator = predatorArr.length;
     statistics.jur = jurArr.length;
     statistics.shark = sharkArr.length;
     statistics.jellyfish = jellyfishArr.length;
-    fs.writeFile("./statistics.json",JSON.stringify(statistics), function(){
-        console.log("Grec");
+    fs.writeFile("./statistics.json", JSON.stringify(statistics), function () {
+
     })
-    
+
 }, 1000);
 
 io.on('connection', function (socket) {
-    createObject(matrix)
+    creatOBJ(matrix)
 
-    socket.on("killAll", function(){
-        
+    socket.on("killAll", function () {
+        matrix = matrixGenerator(30)
+        io.emit("send matrix", matrix)
+        clearInterval(gameId)
+
     })
+
 })
+
+

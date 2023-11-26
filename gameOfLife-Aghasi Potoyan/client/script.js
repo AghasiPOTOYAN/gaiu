@@ -5,8 +5,11 @@ let killButton = document.getElementById("kill");
 killButton.addEventListener("click", handleKillClick)
 
 function handleKillClick() {
-    socket.emit("killAll")
-    grassColor = "black"
+    socket.emit("killAll");
+    const node = document.createElement("h1");
+    const textnode = document.createTextNode("Game Over !!!");
+    node.appendChild(textnode);
+    document.getElementById("container").appendChild(node);
 }
 let ashunButton = document.getElementById("ashun");
 ashunButton.addEventListener("click", handleAsunClick)
@@ -56,26 +59,26 @@ function changeColor(matrix) {
             let toBot = side - side * 0.5
             if (matrix[y][x] == 1) {
                 if (grassColor == "green") {
-                fill(grassColor)
-                rect(x * side, y * side, side, side)
-                text('🍀', x * side, y * side + toBot)
-                }else if (grassColor == "orange") {
+                    fill(grassColor)
+                    rect(x * side, y * side, side, side)
+                    text('🍀', x * side, y * side + toBot)
+                } else if (grassColor == "orange") {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('🍁', x * side, y * side + toBot)
-                }else if (grassColor == "white") {
+                } else if (grassColor == "white") {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('❄️', x * side, y * side + toBot)
-                }else if (grassColor == "lightgreen") {
+                } else if (grassColor == "lightgreen") {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('🍀', x * side, y * side + toBot)
-                }else if (grassColor == "green") {
+                } else if (grassColor == "green") {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('🍀', x * side, y * side + toBot)
-                }else if (grassColor == "black") {
+                } else if (grassColor == "black") {
                     fill(grassColor)
                     rect(x * side, y * side, side, side)
                     text('☠︎', x * side, y * side + toBot)
@@ -84,12 +87,10 @@ function changeColor(matrix) {
                 fill("white")
                 rect(x * side, y * side, side, side)
                 text('🍾', x * side, y * side + toBot)
-            }else if (matrix[y][x] == 3) {
+            } else if (matrix[y][x] == 3) {
                 fill("red")
                 rect(x * side, y * side, side, side)
                 text('🐟', x * side, y * side + toBot)
-
-
             } else if (matrix[y][x] == 4) {
                 if (jurColor == "white") {
                     fill(jurColor)
@@ -112,7 +113,6 @@ function changeColor(matrix) {
                 fill("teal")
                 rect(x * side, y * side, side, side)
                 text('🦈', x * side, y * side + toBot)
-
             } else if (matrix[y][x] == 6) {
                 fill("pink")
                 rect(x * side, y * side, side, side)
@@ -123,8 +123,6 @@ function changeColor(matrix) {
             }
         }
     }
-
-
 }
 
 socket.on("send matrix", changeColor)

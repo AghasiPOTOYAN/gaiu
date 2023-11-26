@@ -1,8 +1,8 @@
 let LivingCreature = require('./LivingCreature')
 
-module.exports = class Jur extends LivingCreature{
+module.exports = class Jur extends LivingCreature {
     constructor(x, y) {
-        super(x,y)
+        super(x, y)
         this.energy = 10;
         this.directions = [];
     }
@@ -18,7 +18,7 @@ module.exports = class Jur extends LivingCreature{
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(char,char1,char2,char5,char6) {
+    chooseCell(char, char1, char2, char5, char6) {
         this.getNewCoordinates();
         let found = [];
 
@@ -42,7 +42,7 @@ module.exports = class Jur extends LivingCreature{
                 }
             }
 
-            
+
             if (y < matrix.length && y >= 0 && x < matrix[0].length && x >= 0) {
                 if (matrix[y][x] == char5) {
                     found.push(this.directions[i]);
@@ -58,15 +58,15 @@ module.exports = class Jur extends LivingCreature{
 
         return found;
     }
-    random(ch){
+    random(ch) {
         let found = this.chooseCell(ch)
-        let result = Math.floor(Math.random()*found.length)
+        let result = Math.floor(Math.random() * found.length)
         return found[result]
     }
-       
-        mul() {
-            this.multiply++
-            let newCell = this.random(0)
+
+    mul() {
+        this.multiply++
+        let newCell = this.random(0)
         if (newCell && this.energy > 5) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -123,20 +123,20 @@ module.exports = class Jur extends LivingCreature{
             if (this.energy > 25) {
                 this.mul()
             }
-        } 
-        
-        
-        
+        }
+
+
+
         else {
             this.move()
         }
     }
 
-    
-       
-        move() {
-            this.multiply++
-            let newCell = this.random(0)
+
+
+    move() {
+        this.multiply++
+        let newCell = this.random(0)
         if (newCell) {
             let newX = newCell[0];
             let newY = newCell[1];
@@ -144,7 +144,7 @@ module.exports = class Jur extends LivingCreature{
             matrix[newY][newX] = 4;
             matrix[this.y][this.x] = 0;
 
-           
+
             this.x = newX;
             this.y = newY;
 
@@ -153,7 +153,7 @@ module.exports = class Jur extends LivingCreature{
             if (this.energy < 0) {
                 this.die()
             }
-        } 
+        }
     }
 
 
